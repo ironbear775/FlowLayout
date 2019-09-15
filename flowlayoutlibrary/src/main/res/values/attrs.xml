@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlowLayout">
+        <attr name="flowGravity">
+            <enum name="start" value="-1" />
+            <enum name="center" value="0" />
+            <enum name="end" value="1" />
+        </attr>
+        <attr name="itemMargin" format="dimension" />
+        <attr name="itemMarginStart" format="dimension" />
+        <attr name="itemMarginEnd" format="dimension" />
+        <attr name="itemMarginTop" format="dimension" />
+        <attr name="itemMarginBottom" format="dimension" />
+    </declare-styleable>
+</resources>
