@@ -32,7 +32,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         list.forEach {
-            flowLayout.addView(MovieView(this, it))
+            val view = MovieView(this)
+            view.setName(it)
+            flowLayout.addView(view)
+
         }
 
         var addCount = 0
@@ -40,7 +43,9 @@ class MainActivity : AppCompatActivity() {
             if (addCount >= list.size) {
                 addCount = 0
             }
-            flowLayout.addView(MovieView(this, list[addCount]))
+            val view = MovieView(this)
+            view.setName(list[addCount])
+            flowLayout.addView(view)
             addCount++
         }
 
@@ -66,3 +71,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
