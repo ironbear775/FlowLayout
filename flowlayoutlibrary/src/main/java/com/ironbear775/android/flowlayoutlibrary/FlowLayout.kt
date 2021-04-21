@@ -33,16 +33,17 @@ class FlowLayout @JvmOverloads constructor(
 
     init {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.FlowLayout)
+        val defaultMargin = 5f.dpF
         gravity = typedArray.getInt(R.styleable.FlowLayout_flowGravity, -1)
-        startMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMargin, dip2px(context, 5f))
-        endMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMargin, dip2px(context, 5f))
-        topMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMargin, dip2px(context, 5f))
-        bottomMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMargin, dip2px(context, 5f))
+        startMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMargin, defaultMargin)
+        endMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMargin, defaultMargin)
+        topMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMargin, defaultMargin)
+        bottomMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMargin, defaultMargin)
 
-        startMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMarginStart, dip2px(context, 5f))
-        endMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMarginEnd, dip2px(context, 5f))
-        topMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMarginTop, dip2px(context, 5f))
-        bottomMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMarginBottom, dip2px(context, 5f))
+        startMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMarginStart, defaultMargin)
+        endMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMarginEnd, defaultMargin)
+        topMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMarginTop, defaultMargin)
+        bottomMargin = typedArray.getDimension(R.styleable.FlowLayout_itemMarginBottom, defaultMargin)
         typedArray.recycle()
     }
 
@@ -156,13 +157,11 @@ class FlowLayout @JvmOverloads constructor(
                     continue
                 }
                 val lp = child.layoutParams as MarginLayoutParams
-
                 val cleft = lp.leftMargin + left
                 val cRight = cleft + child.measuredWidth
                 val cTop = lp.topMargin + top
                 val cBottom = cTop + child.measuredHeight
-                left += (child.measuredWidth + lp.leftMargin
-                        + lp.rightMargin)
+                left += (child.measuredWidth + lp.leftMargin + lp.rightMargin)
                 child.layout(cleft, cTop, cRight, cBottom)
             }
 
@@ -195,10 +194,5 @@ class FlowLayout @JvmOverloads constructor(
         lp.topMargin = topMargin.toInt()
         lp.bottomMargin = bottomMargin.toInt()
         return lp
-    }
-
-    private fun dip2px(context: Context, dpValue: Float): Float {
-        val scale = context.resources.displayMetrics.density
-        return (dpValue * scale + 0.5f)
     }
 }
